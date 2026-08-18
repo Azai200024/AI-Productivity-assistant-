@@ -116,6 +116,16 @@ const reviews = [
 
 
 function Index() {
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase().slice(0, 100);
+    if (!q) return activities;
+    return activities.filter((a) =>
+      [a.name, a.operator, a.tag, a.blurb].join(" ").toLowerCase().includes(q),
+    );
+  }, [query]);
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="absolute inset-x-0 top-0 z-20">
