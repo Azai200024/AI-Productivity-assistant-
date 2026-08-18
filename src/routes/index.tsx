@@ -152,6 +152,12 @@ function Index() {
             >
               Giving back
             </Link>
+            <Link
+              to="/contact"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Contact
+            </Link>
           </div>
         </nav>
       </header>
