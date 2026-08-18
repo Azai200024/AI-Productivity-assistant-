@@ -79,6 +79,38 @@ const seasons = [
   { label: "Spring", months: "Sep – Nov", note: "Fynbos in bloom, whales in the bay." },
 ];
 
+const reviews = [
+  {
+    name: "Thandi M.",
+    from: "Johannesburg",
+    activity: "Table Mountain Trails",
+    quote:
+      "Booked the sunrise Platteklip hike through Wild Cape and had the guide's number within an hour. Being above the cloud tablecloth at 6am is something I'll never forget.",
+  },
+  {
+    name: "Daniel V.",
+    from: "Rotterdam",
+    activity: "Kelp Forest Paddle",
+    quote:
+      "The app made picking an operator easy — real prices, no upsell. A seal swam under my kayak twice. Worth every rand.",
+  },
+  {
+    name: "Ayanda K.",
+    from: "Cape Town",
+    activity: "Winelands Day Escape",
+    quote:
+      "I live here and still found estates I'd never heard of. Everything listed was accurate, right down to the lunch stop.",
+  },
+  {
+    name: "Sarah L.",
+    from: "London",
+    activity: "Signal Hill Tandem Flight",
+    quote:
+      "Nervous flyer, incredible pilot. I liked that the app tells you which season is actually best — we went in autumn and the air was glass.",
+  },
+];
+
+
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
