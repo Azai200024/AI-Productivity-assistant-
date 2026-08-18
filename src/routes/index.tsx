@@ -119,19 +119,33 @@ function Index() {
           <span className="font-display text-lg tracking-tight text-primary-foreground">
             Wild Cape
           </span>
-          <a
-            href="#activities"
-            className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
-          >
-            Activities
-          </a>
+          <div className="flex items-center gap-6">
+            <a
+              href="#activities"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Activities
+            </a>
+            <a
+              href="#reviews"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Reviews
+            </a>
+            <Link
+              to="/charity"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Giving back
+            </Link>
+          </div>
         </nav>
       </header>
 
       <section className="relative isolate flex min-h-[92vh] items-end overflow-hidden">
         <img
           src={heroImg}
-          alt="Mountain peaks with a waterfall falling through green fynbos slopes"
+          alt="Table Mountain at golden hour with its cloud tablecloth spilling over the cliffs above green fynbos slopes"
           width={1920}
           height={1280}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
