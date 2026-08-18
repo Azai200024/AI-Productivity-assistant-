@@ -61,9 +61,14 @@ function Charity() {
           <Link to="/" className="font-display text-lg tracking-tight">
             Wild Cape
           </Link>
-          <Link to="/" className="text-sm underline-offset-4 hover:underline">
-            Back to activities
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link to="/" className="text-sm underline-offset-4 hover:underline">
+              Back to activities
+            </Link>
+            <Link to="/contact" className="text-sm underline-offset-4 hover:underline">
+              Contact
+            </Link>
+          </div>
         </nav>
       </header>
 

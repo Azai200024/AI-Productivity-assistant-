@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { BookingDialog } from "@/components/BookingDialog";
 import heroImg from "@/assets/hero-table-mountain.jpg";
 import hikingImg from "@/assets/act-hiking.jpg";
 import kayakImg from "@/assets/act-kayak.jpg";
@@ -113,6 +116,16 @@ const reviews = [
 
 
 function Index() {
+  const [query, setQuery] = useState("");
+
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase().slice(0, 100);
+    if (!q) return activities;
+    return activities.filter((a) =>
+      [a.name, a.operator, a.tag, a.blurb].join(" ").toLowerCase().includes(q),
+    );
+  }, [query]);
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
       <header className="absolute inset-x-0 top-0 z-20">
@@ -138,6 +151,12 @@ function Index() {
               className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
             >
               Giving back
+            </Link>
+            <Link
+              to="/contact"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Contact
             </Link>
           </div>
         </nav>
@@ -176,12 +195,35 @@ function Index() {
         <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
           <h2 className="font-display text-3xl sm:text-4xl">Recreational activities</h2>
           <p className="max-w-sm text-sm text-muted-foreground">
-            Each listing links straight to the operator's own website for pricing and booking.
+            Search the list, then request a booking straight from the card.
           </p>
         </div>
 
+        <div className="relative mt-8 max-w-md">
+          <Search
+            className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
+            aria-hidden="true"
+          />
+          <Input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            maxLength={100}
+            aria-label="Search activities"
+            placeholder="Search hiking, kayak, wine, operator…"
+            className="pl-9"
+          />
+        </div>
+
+        {filtered.length === 0 && (
+          <p className="mt-10 text-sm text-muted-foreground">
+            Nothing matches "{query.trim().slice(0, 60)}". Try "mountain", "ocean" or
+            "wine".
+          </p>
+        )}
+
         <div className="mt-10 grid gap-8 sm:grid-cols-2">
-          {activities.map((a) => (
+          {filtered.map((a) => (
             <article
               key={a.name}
               className="group overflow-hidden rounded-xl border border-border bg-card"
@@ -208,11 +250,14 @@ function Index() {
                     <p className="text-sm font-medium">{a.operator}</p>
                     <p className="text-xs text-muted-foreground">{a.price}</p>
                   </div>
-                  <Button asChild variant="outline" size="sm">
-                    <a href={a.url} target="_blank" rel="noreferrer noopener">
-                      Visit website
-                    </a>
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button asChild variant="outline" size="sm">
+                      <a href={a.url} target="_blank" rel="noreferrer noopener">
+                        Website
+                      </a>
+                    </Button>
+                    <BookingDialog activity={a.name} operator={a.operator} />
+                  </div>
                 </div>
               </div>
             </article>
