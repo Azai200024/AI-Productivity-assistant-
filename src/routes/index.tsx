@@ -1,7 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Star } from "lucide-react";
+import { useMemo, useState } from "react";
+import { Search, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { BookingDialog } from "@/components/BookingDialog";
 import heroImg from "@/assets/hero-table-mountain.jpg";
 import hikingImg from "@/assets/act-hiking.jpg";
 import kayakImg from "@/assets/act-kayak.jpg";
