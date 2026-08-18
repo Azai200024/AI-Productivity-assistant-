@@ -250,11 +250,14 @@ function Index() {
                     <p className="text-sm font-medium">{a.operator}</p>
                     <p className="text-xs text-muted-foreground">{a.price}</p>
                   </div>
-                  <Button asChild variant="outline" size="sm">
-                    <a href={a.url} target="_blank" rel="noreferrer noopener">
-                      Visit website
-                    </a>
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <Button asChild variant="outline" size="sm">
+                      <a href={a.url} target="_blank" rel="noreferrer noopener">
+                        Website
+                      </a>
+                    </Button>
+                    <BookingDialog activity={a.name} operator={a.operator} />
+                  </div>
                 </div>
               </div>
             </article>
