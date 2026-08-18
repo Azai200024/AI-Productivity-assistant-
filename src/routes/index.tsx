@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import heroImg from "@/assets/hero-mountain-waterfall.jpg";
+import heroImg from "@/assets/hero-table-mountain.jpg";
 import hikingImg from "@/assets/act-hiking.jpg";
 import kayakImg from "@/assets/act-kayak.jpg";
 import wineImg from "@/assets/act-wine.jpg";
@@ -79,6 +80,38 @@ const seasons = [
   { label: "Spring", months: "Sep – Nov", note: "Fynbos in bloom, whales in the bay." },
 ];
 
+const reviews = [
+  {
+    name: "Thandi M.",
+    from: "Johannesburg",
+    activity: "Table Mountain Trails",
+    quote:
+      "Booked the sunrise Platteklip hike through Wild Cape and had the guide's number within an hour. Being above the cloud tablecloth at 6am is something I'll never forget.",
+  },
+  {
+    name: "Daniel V.",
+    from: "Rotterdam",
+    activity: "Kelp Forest Paddle",
+    quote:
+      "The app made picking an operator easy — real prices, no upsell. A seal swam under my kayak twice. Worth every rand.",
+  },
+  {
+    name: "Ayanda K.",
+    from: "Cape Town",
+    activity: "Winelands Day Escape",
+    quote:
+      "I live here and still found estates I'd never heard of. Everything listed was accurate, right down to the lunch stop.",
+  },
+  {
+    name: "Sarah L.",
+    from: "London",
+    activity: "Signal Hill Tandem Flight",
+    quote:
+      "Nervous flyer, incredible pilot. I liked that the app tells you which season is actually best — we went in autumn and the air was glass.",
+  },
+];
+
+
 function Index() {
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
@@ -87,19 +120,33 @@ function Index() {
           <span className="font-display text-lg tracking-tight text-primary-foreground">
             Wild Cape
           </span>
-          <a
-            href="#activities"
-            className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
-          >
-            Activities
-          </a>
+          <div className="flex items-center gap-6">
+            <a
+              href="#activities"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Activities
+            </a>
+            <a
+              href="#reviews"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Reviews
+            </a>
+            <Link
+              to="/charity"
+              className="text-sm text-primary-foreground/85 underline-offset-4 hover:underline"
+            >
+              Giving back
+            </Link>
+          </div>
         </nav>
       </header>
 
       <section className="relative isolate flex min-h-[92vh] items-end overflow-hidden">
         <img
           src={heroImg}
-          alt="Mountain peaks with a waterfall falling through green fynbos slopes"
+          alt="Table Mountain at golden hour with its cloud tablecloth spilling over the cliffs above green fynbos slopes"
           width={1920}
           height={1280}
           className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -192,11 +239,61 @@ function Index() {
         </div>
       </section>
 
+      <section id="reviews" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+          <h2 className="font-display text-3xl sm:text-4xl">What travellers say</h2>
+          <p className="max-w-sm text-sm text-muted-foreground">
+            Reviews from people who booked their Cape Town adventure through Wild Cape.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 sm:grid-cols-2">
+          {reviews.map((r) => (
+            <figure
+              key={r.name}
+              className="rounded-xl border border-border bg-card p-6"
+              style={{ boxShadow: "var(--shadow-forest)" }}
+            >
+              <div className="flex items-center gap-1 text-accent" aria-label="Rated 5 out of 5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
+                ))}
+              </div>
+              <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                "{r.quote}"
+              </blockquote>
+              <figcaption className="mt-5 border-t border-border pt-4">
+                <p className="text-sm font-medium">
+                  {r.name} <span className="text-muted-foreground">· {r.from}</span>
+                </p>
+                <p className="text-xs text-muted-foreground">{r.activity}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-14">
+          <div>
+            <h2 className="font-display text-2xl sm:text-3xl">Every booking gives back</h2>
+            <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+              5% of what we earn funds trail restoration, youth hiking clubs and guide
+              bursaries across the Cape.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/charity">See our community work</Link>
+          </Button>
+        </div>
+      </section>
+
       <footer className="mx-auto max-w-6xl px-6 py-12">
         <p className="text-sm text-muted-foreground">
           Wild Cape — an independent guide to Cape Town's outdoors.
         </p>
       </footer>
+
     </div>
   );
 }
