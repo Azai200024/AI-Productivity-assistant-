@@ -1,7 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import heroImg from "@/assets/hero-mountain-waterfall.jpg";
+import heroImg from "@/assets/hero-table-mountain.jpg";
 import hikingImg from "@/assets/act-hiking.jpg";
 import kayakImg from "@/assets/act-kayak.jpg";
 import wineImg from "@/assets/act-wine.jpg";
