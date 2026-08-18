@@ -238,11 +238,61 @@ function Index() {
         </div>
       </section>
 
+      <section id="reviews" className="mx-auto max-w-6xl px-6 py-20">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+          <h2 className="font-display text-3xl sm:text-4xl">What travellers say</h2>
+          <p className="max-w-sm text-sm text-muted-foreground">
+            Reviews from people who booked their Cape Town adventure through Wild Cape.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-8 sm:grid-cols-2">
+          {reviews.map((r) => (
+            <figure
+              key={r.name}
+              className="rounded-xl border border-border bg-card p-6"
+              style={{ boxShadow: "var(--shadow-forest)" }}
+            >
+              <div className="flex items-center gap-1 text-accent" aria-label="Rated 5 out of 5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className="h-4 w-4 fill-current" aria-hidden="true" />
+                ))}
+              </div>
+              <blockquote className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                "{r.quote}"
+              </blockquote>
+              <figcaption className="mt-5 border-t border-border pt-4">
+                <p className="text-sm font-medium">
+                  {r.name} <span className="text-muted-foreground">· {r.from}</span>
+                </p>
+                <p className="text-xs text-muted-foreground">{r.activity}</p>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-14">
+          <div>
+            <h2 className="font-display text-2xl sm:text-3xl">Every booking gives back</h2>
+            <p className="mt-2 max-w-lg text-sm text-muted-foreground">
+              5% of what we earn funds trail restoration, youth hiking clubs and guide
+              bursaries across the Cape.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/charity">See our community work</Link>
+          </Button>
+        </div>
+      </section>
+
       <footer className="mx-auto max-w-6xl px-6 py-12">
         <p className="text-sm text-muted-foreground">
           Wild Cape — an independent guide to Cape Town's outdoors.
         </p>
       </footer>
+
     </div>
   );
 }
