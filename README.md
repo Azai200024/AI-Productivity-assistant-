@@ -1,14 +1,18 @@
-# Welcome to your Lovable project
+# Cape Vista
+
+Create a modern day app and use a backdrop that is natural mountain tops and a waterfall running through it. The app should be about things to do in Cape town. Include features like websites for different companies that offer different recreational activities.Make it natural looking and include natural colours like green and brown and white
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://cape-valley-trails.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/ea819015-d0d5-4a16-8d6c-5c10013d50dd).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +24,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
