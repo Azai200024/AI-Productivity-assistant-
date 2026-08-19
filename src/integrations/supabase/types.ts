@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      activities: {
+        Row: {
+          best_season: string
+          blurb: string
+          category: string
+          created_at: string
+          description: string
+          duration: string
+          id: string
+          image_key: string
+          meeting_point: string
+          name: string
+          operator: string
+          operator_url: string
+          price_from: number
+          price_label: string
+          slug: string
+          sort_order: number
+        }
+        Insert: {
+          best_season: string
+          blurb: string
+          category: string
+          created_at?: string
+          description: string
+          duration?: string
+          id?: string
+          image_key: string
+          meeting_point?: string
+          name: string
+          operator: string
+          operator_url: string
+          price_from?: number
+          price_label: string
+          slug: string
+          sort_order?: number
+        }
+        Update: {
+          best_season?: string
+          blurb?: string
+          category?: string
+          created_at?: string
+          description?: string
+          duration?: string
+          id?: string
+          image_key?: string
+          meeting_point?: string
+          name?: string
+          operator?: string
+          operator_url?: string
+          price_from?: number
+          price_label?: string
+          slug?: string
+          sort_order?: number
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           activity: string
@@ -80,15 +137,83 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          activity_slug: string
+          approved: boolean
+          author_location: string | null
+          author_name: string
+          created_at: string
+          id: string
+          quote: string
+          rating: number
+        }
+        Insert: {
+          activity_slug: string
+          approved?: boolean
+          author_location?: string | null
+          author_name: string
+          created_at?: string
+          id?: string
+          quote: string
+          rating?: number
+        }
+        Update: {
+          activity_slug?: string
+          approved?: boolean
+          author_location?: string | null
+          author_name?: string
+          created_at?: string
+          id?: string
+          quote?: string
+          rating?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_activity_slug_fkey"
+            columns: ["activity_slug"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -215,6 +340,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+    },
   },
 } as const
